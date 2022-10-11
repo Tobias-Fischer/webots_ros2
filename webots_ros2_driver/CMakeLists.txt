@@ -36,11 +36,8 @@ find_package(vision_msgs REQUIRED)
 find_package(webots_ros2_msgs REQUIRED)
 find_package(tinyxml2_vendor REQUIRED)
 find_package(TinyXML2 REQUIRED)
-if($ENV{ROS_DISTRO} MATCHES "foxy" OR $ENV{ROS_DISTRO} MATCHES "galactic")
-  find_package(PythonLibs 3.8 EXACT REQUIRED)
-else()
-  find_package(PythonLibs 3.10 EXACT REQUIRED)
-endif()
+find_package(Python COMPONENTS Interpreter Development)
+find_package(PythonLibs REQUIRED)
 
 if (UNIX AND NOT APPLE)
   set(WEBOTS_LIB_BASE webots/lib/linux-gnu)
@@ -100,13 +97,9 @@ else()
   )
 endif()
 
-if($ENV{ROS_DISTRO} MATCHES "foxy" OR $ENV{ROS_DISTRO} MATCHES "galactic")
-  ament_python_install_package(${PROJECT_NAME}_webots
-    PACKAGE_DIR ${WEBOTS_LIB_BASE}/python38)
-else()
-  ament_python_install_package(${PROJECT_NAME}_webots
-    PACKAGE_DIR ${WEBOTS_LIB_BASE}/python310)
-endif()
+ament_python_install_package(${PROJECT_NAME}_webots
+    PACKAGE_DIR ${WEBOTS_LIB_BASE}/python${Python_VERSION_MAJOR}${Python_VERSION_MINOR})
+
 
 ament_python_install_package(${PROJECT_NAME}
   PACKAGE_DIR ${PROJECT_NAME})
