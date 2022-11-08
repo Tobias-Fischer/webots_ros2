@@ -38,11 +38,7 @@ find_package(webots_ros2_msgs REQUIRED)
 find_package(tinyxml2_vendor REQUIRED)
 find_package(TinyXML2 REQUIRED)
 
-if($ENV{ROS_DISTRO} MATCHES "foxy" OR $ENV{ROS_DISTRO} MATCHES "galactic")
-  find_package(PythonLibs 3.8 EXACT REQUIRED)
-else()
-  find_package(PythonLibs 3.10 EXACT REQUIRED)
-endif()
+find_package(PythonLibs REQUIRED)
 
 if(UNIX AND NOT APPLE)
   set(WEBOTS_LIB_BASE webots/lib/linux-gnu)
