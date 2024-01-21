@@ -29,7 +29,7 @@ find_package(webots_ros2_msgs REQUIRED)
 find_package(tinyxml2_vendor REQUIRED)
 find_package(TinyXML2 REQUIRED)
 find_package(yaml-cpp REQUIRED)
-find_package(PythonLibs 3.10 EXACT REQUIRED)
+find_package(PythonLibs REQUIRED)
 
 add_custom_target(compile-lib-controller ALL
   COMMAND ${CMAKE_COMMAND} -E env "WEBOTS_HOME=${CMAKE_CURRENT_SOURCE_DIR}/webots" make release -f Makefile > /dev/null 2>&1
